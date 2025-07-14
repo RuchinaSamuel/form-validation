@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- lesson 1: creating form and logging the output to the console -->
+    <div class="border border-gray-200 w-[600px] h-[400px] mx-auto mt-10 p-4">
+      <div class="mb-8">
+        <label for="fName">First Name</label>
+        <input
+          type="text"
+          class="w-full border border-gray-200 rounded-sm p-1 outline-none"
+          id="firstName"
+        />
+
+        <p id="firstNameError" class="text-red-500 mt-1 text-sm"></p>
+      </div>
+
+      <div class="mb-8">
+        <label for="lName">Last Name</label>
+        <input
+          type="text"
+          class="w-full border border-gray-200 rounded-sm p-1 outline-none"
+          id="lastName"
+        />
+        <p id="lastNameError" class="text-red-500 mt-1 text-sm"></p>
+      </div>
+
+      <div class="mb-8">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="w-full border border-gray-200 rounded-sm p-1 outline-none"
+          id="email"
+        />
+        <p id="emailError" class="text-red-500 mt-1 text-sm"></p>
+      </div>
+
+      <div>
+        <button
+          class="bg-green-500 px-4 py-2 text-white rounded-sm"
+          id="submit"
+          onclick="alert('I am a form validator submit button')"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const submitBtn = document.getElementById("submit");
+
+      submitBtn.addEventListener("click", function () {
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        const firstNameError = document.getElementById("firstNameError");
+        const lastNameError = document.getElementById("lastNameError");
+        const emailError = document.getElementById("emailError");
+
+        firstNameError.textContent = "";
+        lastNameError.textContent = "";
+        emailError.textContent = "";
+
+        let errorMessage = false;
+
+        if (!firstName) {
+          firstNameError.textContent = "First name is required";
+          errorMessage = true;
+        }
+
+        if (!lastName) {
+          lastNameError.textContent = "last name is required";
+          errorMessage = true;
+        }
+        const emailInput = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email) {
+          emailError.textContent = "Email is required";
+        } else if (!emailInput.test(email)) {
+          emailError.textContent = "Please enter a valid email";
+          errorMessage = true;
+        }
+
+        if (!errorMessage) {
+          console.log("First Name:", firstName);
+          console.log("Last Name:", lastName);
+          console.log("Email:", email);
+        }
+      });
+
+      let age = 19;
+
+      if (age < 17) {
+        console.log("this party is for adults");
+      } else if (age >= 18) {
+        console.log("Welcome to the best party in the world");
+      } else {
+        console.log("get out of here");
+      }
+
+      let score = 66;
+
+      if (score >= 90) {
+        console.log("Great you got a perfect score, grade A");
+      } else if (score >= 65) {
+        console.log("Grade B");
+      } else {
+        console.log("Add more efforts");
+      }
+
+      let isOnline = false;
+      let status = isOnline ? " online" : "offline";
+      console.log(status);
+
+      let day = "Friday";
+      switch (day) {
+        case "Monday":
+          console.log("It's the beginning of a new week!");
+          break;
+
+        case "wednesday":
+          console.log("Midweek");
+          break;
+
+        case "Friday":
+          console.log("Thank God is " + day);
+          break;
+        default:
+          console.log("It is another day in the week!!");
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        console.log("Count: ", i);
+      }
+
+      let i = 1;
+      while (i <= 5) {
+        console.log("while loop count: ", i);
+        i++;
+      }
+    </script>
+  </body>
+</html>
