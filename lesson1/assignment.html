@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="h-[400px] w-[600px] border border-gray-200 mx-auto mt-10 p-4">
+      <div class="mb-4">
+        <label for="fName">First Name</label>
+        <input
+          type="text"
+          class="w-full outline-none border border-gray-200 p-1 rounded-sm"
+          id="firstName"
+        />
+        <p id="firstNameError" class="text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <div class="mb-4">
+        <label for="fName">Last Name</label>
+        <input
+          type="text"
+          class="w-full outline-none border border-gray-200 p-1 rounded-sm"
+          id="lastName"
+        />
+        <p id="lastNameError" class="text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <div class="mb-4">
+        <label for="fName">Email</label>
+        <input
+          type="email"
+          class="w-full outline-none border border-gray-200 p-1 rounded-sm"
+          id="email"
+        />
+        <p id="emailError" class="text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <div class="">
+        <button
+          id="submit"
+          class="bg-green-500 text-white px-4 py-2 rounded-sm"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+
+    <div class="border border-gray-200 h-[300px] w-[600px] mx-auto mt-20 p-6">
+      <div class="mb-4">
+        <label for="email">Email: </label>
+        <input
+          type="email"
+          id="signUpEmail"
+          class="border border-gray-200 outline-none w-[400px] p-1 rounded-sm"
+        />
+        <p id="signUpEmailError" class="text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <div class="mb-4">
+        <label for="Password">Password: </label>
+        <input
+          type="password"
+          id="password"
+          class="border border-gray-200 outline-none w-[400px] p-1 rounded-sm"
+        />
+        <p id="passwordError" class="text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <div class="mb-4">
+        <label for="conPassword">Confirm Password: </label>
+        <input
+          type="password"
+          id="confirmPassword"
+          class="border border-gray-200 outline-none w-[400px] p-1 rounded-sm"
+        />
+        <p id="confirmPasswordError" class="text-red-500 text-sm mt-1"></p>
+      </div>
+
+      <div>
+        <button id="signUp" class="bg-red-900 text-white px-4 py-2 rounded-sm">
+          Sign up
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const submitBtn = document.getElementById("submit");
+      const signUpBtn = document.getElementById("signUp");
+
+      submitBtn.addEventListener("click", function () {
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+
+        const firstNameError = document.getElementById("firstNameError");
+        const lastNameError = document.getElementById("lastNameError");
+        const emailError = document.getElementById("emailError");
+
+        firstNameError.textContent = "";
+        lastNameError.textContent = "";
+        emailError.textContent = "";
+
+        let errorMessage = false;
+
+        if (!firstName) {
+          firstNameError.textContent = "First name is required..";
+          errorMessage = true;
+        }
+
+        if (!lastName) {
+          lastNameError.textContent = "last name is required..";
+          errorMessage = true;
+        }
+
+        let emailRegax = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email) {
+          emailError.textContent = "Email is required...";
+          errorMessage = true;
+        } else if (!emailRegax.test(email)) {
+          emailError.textContent = "Please enter a valid email";
+          errorMessage = true;
+        }
+
+        console.log("First Name: ", firstName);
+        console.log("Last Name: ", lastName);
+        console.log("Email: ", email);
+      });
+
+      signUpBtn.addEventListener("click", function () {
+        const signUpEmail = document.getElementById("signUpEmail").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        const signUpEmailError = document.getElementById("signUpEmailError");
+        const passwordError = document.getElementById("passwordError");
+        const confirmPasswordError = document.getElementById(
+          "confirmPasswordError"
+        );
+
+        signUpEmailError.textContent = "";
+        passwordError.textContent = "";
+        confirmPasswordError.textContent = "";
+
+        let signUpError = false;
+
+        let signUpRegax = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let passwordRegax =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,24}$/;
+
+        if (!signUpEmail) {
+          signUpEmailError.textContent = "Email is required...";
+          signUpError = true;
+        } else if (!signUpRegax.test(signUpEmail)) {
+          signUpEmailError.textContent = "Please enter a valid email...";
+          signUpError = true;
+        }
+
+        if (!password) {
+          passwordError.textContent = "Password is required...";
+          signUpError = true;
+        } else if (!passwordRegax.test(password)) {
+          passwordError.textContent =
+            "Please enter a valid password. Password must include upper & lower case letters, a number, a special character, and be 8–24 characters.";
+          signUpError = true;
+        }
+
+        if (!confirmPassword) {
+          confirmPasswordError.textContent = "Please confirm your password..";
+          signUpError = true;
+        } else if (password !== confirmPassword) {
+          confirmPasswordError.textContent = "Passwords do not match.";
+          signUpError = true;
+        }
+
+        if (!signUpError) {
+          console.log("Email: ", signUpEmail);
+          console.log("password: ", password);
+        }
+      });
+    </script>
+  </body>
+</html>

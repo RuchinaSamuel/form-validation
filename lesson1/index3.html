@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>My Hobbies</h2>
+    <ul id="hobbyList"></ul>
+
+    <script>
+      let hobbies = [
+        "Reading",
+        "Sleeping",
+        "Cooking",
+        "Playing",
+        "Eating",
+        "Coding",
+      ];
+      let music = ["Afrobeats", "Jazz", "Gospel", "Gospel", "Jazz", "Jazz"];
+
+      let favoriteFood = [
+        "Rice",
+        "Beans",
+        "Egg",
+        "Fish",
+        "Meat",
+        "Native food",
+      ];
+      let list = document.getElementById("hobbyList");
+      for (let i = 0; i < hobbies.length; i++) {
+        let listItem = document.createElement("li");
+        listItem.textContent = `hobby: ${hobbies[i]}, | music: ${music[i]}, | Food: ${favoriteFood[i]}`;
+        list.appendChild(listItem);
+      }
+
+      for (let i = 1; i <= 5; i++) {
+        document.body.innerHTML += `<p>Paragraph ${i}</p>`;
+      }
+
+      let numbers = [10, 20, 30];
+      let total = 0;
+
+      for (let i = 0; i < numbers.length; i++) {
+        total += numbers[i];
+      }
+
+      console.log("Total:", total); // 60
+    </script>
+  </body>
+</html>

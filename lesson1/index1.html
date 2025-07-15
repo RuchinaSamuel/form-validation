@@ -118,32 +118,41 @@
       let status = isOnline ? " online" : "offline";
       console.log(status);
 
-      let day = "Friday";
+      let day = "Tuesday";
       switch (day) {
         case "Monday":
-          console.log("It's the beginning of a new week!");
+          console.log("Hurray!!! it is a new week....");
           break;
 
-        case "wednesday":
-          console.log("Midweek");
+        case "Wednesday":
+          console.log("Midweek! remember to go to church");
           break;
 
         case "Friday":
           console.log("Thank God is " + day);
           break;
         default:
-          console.log("It is another day in the week!!");
+          console.log("Today is " + day);
       }
 
-      for (let i = 1; i <= 5; i++) {
-        console.log("Count: ", i);
+      for (let i = 1; i <= 10; i++) {
+        if (i === 3) continue;
+        if (i === 5) continue;
+        console.log("count:", i);
       }
 
       let i = 1;
-      while (i <= 5) {
-        console.log("while loop count: ", i);
+
+      while (i <= 10) {
+        console.log("while loop count", i);
         i++;
       }
+
+      let number = 1;
+      do {
+        console.log("while loop:", number);
+        number++;
+      } while (number <= 10);
     </script>
   </body>
 </html>
