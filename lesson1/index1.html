@@ -153,6 +153,46 @@
         console.log("while loop:", number);
         number++;
       } while (number <= 10);
+
+      let scoreLet = 95;
+      if (scoreLet >= 90) {
+        console.log("Grade A");
+      } else if (scoreLet >= 80 && scoreLet <= 89) {
+        console.log("Grade B");
+      } else if (scoreLet >= 70 && scoreLet <= 79) {
+        console.log("Grace C");
+      } else if (scoreLet >= 60 && scoreLet <= 69) {
+        console.log("Grade D");
+      } else {
+        console.log("Grade F");
+      }
+
+      let isLoggedIn = true;
+      let isLoggedOut = false;
+
+      if (isLoggedIn && isLoggedOut) {
+        console.log("Access permit");
+      } else {
+        console.log("denied");
+      }
+
+      let fruits = "kiwi";
+
+      switch (fruits) {
+        case "banana":
+          console.log("🍌 It's a banana!");
+          break;
+
+        case "strawberry":
+          console.log("🍓 It's a strawberry!");
+          break;
+
+        case "kiwi":
+          console.log("🥝 It's a kiwi!");
+          break;
+        default:
+          console.log("Unknown fruit");
+      }
     </script>
   </body>
 </html>

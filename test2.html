@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="mt-20 p-10 w-[400px]">
+      <h2 class="text-xl">📘 Student Score Grader</h2>
+
+      <div class="mt-1">
+        <div>
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            placeholder="Enter name"
+            class="w-full border border-gray-200 outline-none p-1 rounded-sm mt-1"
+            id="studentName"
+          />
+        </div>
+
+        <div class="mt-2">
+          <label for="name">Score(0-100):</label>
+          <input
+            type="number"
+            placeholder="Enter score"
+            class="w-full border border-gray-200 outline-none p-1 rounded-sm mt-1"
+            id="studentScore"
+          />
+        </div>
+        <ul id="resultList"></ul>
+
+        <div class="mt-2">
+          <button id="gradeBtn" class="bg-green-600 text-white p-2 rounded-sm">
+            Grade Student
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // #90 and above = A === "🌟 Excellent work!"
+      // 80 and above = B==== "👏 Good job!"
+      // 70 and above = C====="👍 Keep going!";
+      // 60 and above = D==="⚠️ Needs improvement.";
+      // "❌ Failed. Try harder."
+
+      const gradeBtn = document.getElementById("gradeBtn");
+
+      gradeBtn.addEventListener("click", function () {
+        const name = document.getElementById("studentName").value.trim();
+        const score = parseInt(document.getElementById("studentScore").value);
+        const resultList = document.getElementById("resultList");
+
+        if (!name || isNaN(score)) {
+          alert("Please enter both a name and a valid score.");
+          return;
+        }
+
+        let grade;
+        if (score >= 90) {
+          grade = "A";
+        } else if (score >= 80) {
+          grade = "B";
+        } else if (score >= 70) {
+          grade = "C";
+        } else if (score >= 60) {
+          grade = "D";
+        } else {
+          grade = "F";
+        }
+
+        let message;
+
+        switch (grade) {
+          case "A":
+            message = "🌟 Excellent work!";
+            break;
+          case "B":
+            message = "👏 Good job!";
+            break;
+          case "C":
+            message = "👍 Keep going!";
+            break;
+          case "D":
+            message = "⚠️ Needs improvement.";
+            break;
+          default:
+            message = "❌ Failed. Try harder.";
+        }
+
+        const now = new Date();
+        const timestamp = now.toLocaleDateString();
+
+        const randomId = Math.floor(Math.random() * 900) + 100;
+        const studentId = `${name.toLowerCase()}${randomId}`;
+
+        const li = document.createElement("li");
+        li.textContent = `${name} | Score: ${score} | Grade: ${grade} | ID: ${studentId} → ${message} |  🕒 ${timestamp}`;
+        resultList.appendChild(li);
+
+        document.getElementById("studentName").value = "";
+        document.getElementById("studentScore").value = "";
+      });
+    </script>
+  </body>
+</html>
